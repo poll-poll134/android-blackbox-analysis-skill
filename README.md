@@ -8,6 +8,10 @@
 
 本仓库于 2026 年 8 月首次公开，但并不是为申请活动临时创建的概念验证项目。它来源于我长期用于 Android 应用黑盒分析的个人工具链。受到 Codex for Open Source 项目鼓舞后，我对原有工具进行了通用化、隐私清理、边界补充和发布校验，并以 MIT 许可证公开，希望让其他 Android、云设备和 Agent 工具维护者复用和贡献。
 
+### English
+
+This repository was first made public in August 2026, but it was not created as a temporary proof of concept solely for the Codex for Open Source application process. It grew out of a personal toolchain that I have used over the long term for black-box analysis of Android apps. Inspired by the Codex for Open Source program, I generalized the original tools, removed private information, clarified operational boundaries, and added release validation. I am publishing it under the MIT License so that other maintainers working on Android, cloud devices, and agent tooling can reuse it and contribute.
+
 ## 它能解决什么问题
 
 - **页面和功能容易漏扫**：为页面、状态、弹窗、长页和返回路径建立稳定证据 ID。
