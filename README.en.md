@@ -6,15 +6,15 @@ A Codex Skill for **black-box competitive analysis of Android apps**. It uses AD
 
 > Core principle: Draw conclusions only from visible behavior and Android system evidence. Do not decompile APKs or present assumptions as facts.
 
-## Project Background and Open-Source Rationale
+## Project Origin
 
-This repository was first made public in August 2026, but it was not created as a temporary proof of concept solely for the Codex for Open Source application process. It grew out of a personal toolchain that I have used over the long term for black-box analysis of Android apps. Inspired by the Codex for Open Source program, I generalized the original tools, removed private information, clarified operational boundaries, and added release validation. I am publishing it under the MIT License so that other maintainers working on Android, cloud devices, and agent tooling can reuse it and contribute.
+This repository was first published in August 2026 and originated from a personal toolchain I had used for authorized black-box analysis of Android apps. Before publication, I generalized the tools, removed private and deployment-specific material, documented operating boundaries, and added release validation. The public version is available under the MIT License.
 
-## Used in Practice
+## Scope Before Publication
 
-The private predecessor of this repository has been used over the long term for authorized black-box analysis of Android apps, including systematic screen, feature, and runtime-boundary reviews of two app-cloning products. Real work used remote ADB containerized Android environments and encountered JPEG screenshot output, incomplete UI hierarchies, unavailable cameras, interrupted networks followed by resumed capture, payment boundaries, and user-assisted login or permission steps. The resulting evidence supported capability matrices, product-difference comparisons, and feature selection for a new product.
+Before publication, the toolchain was used for authorized black-box analysis of Android apps, including systematic screen, feature, and runtime-boundary reviews of two app-cloning products. The work used remote ADB containerized Android environments and encountered JPEG screenshot output, incomplete UI hierarchies, unavailable cameras, interrupted networks followed by resumed capture, payment boundaries, and user-assisted login or permission steps. The resulting evidence supported capability matrices, product-difference comparisons, and feature selection for a new product.
 
-These statements describe real use of the method and its private predecessor. They do not claim third-party adoption of this public repository, user counts, download counts, or success rates that cannot be verified publicly.
+The public repository retains only sanitized or synthetic material and contains no real app data, device identifiers, or customer information from that work.
 
 ## Complete Sanitized Example
 
