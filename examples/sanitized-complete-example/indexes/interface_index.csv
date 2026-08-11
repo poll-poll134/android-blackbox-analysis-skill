@@ -1,0 +1,6 @@
+Evidence ID,File,Slug,Visible text and descriptions,Actionable control summary,Screenshot path,UI tree path,UI tree status
+DEMO-0001,DEMO-0001_empty-home.md,empty-home,Sample Clone Manager | No instances yet,Add app | Permission check,evidence/screen-summaries/DEMO-0001_empty-home.md,,omitted
+DEMO-0002,DEMO-0002_app-picker.md,app-picker,Installed apps | Sample Notes,Select Sample Notes | Create,evidence/screen-summaries/DEMO-0002_app-picker.md,,omitted
+DEMO-0003,DEMO-0003_instance-created.md,instance-created,Sample Notes · 0 | Ready,Launch | More actions,evidence/screen-summaries/DEMO-0003_instance-created.md,,omitted
+DEMO-0004,DEMO-0004_instance-menu.md,instance-menu,Sample Notes · 0,Start | Stop | Rename | Backup | Delete | Cancel,evidence/screen-summaries/DEMO-0004_instance-menu.md,,omitted
+DEMO-0005,DEMO-0005_permission-diagnostics.md,permission-diagnostics,Permission check | Notifications allowed | Location not granted | Camera unavailable in this environment,Open notification settings | Open location settings,evidence/screen-summaries/DEMO-0005_permission-diagnostics.md,,omitted

@@ -1,0 +1,15 @@
+Evidence ID,Screenshot,Slug,Class,Resource ID,Text,Content description,Clickable,Long-clickable,Checkable,Checked,Enabled,Selected,Bounds,Center X,Center Y,UI tree status
+DEMO-0001,DEMO-0001_empty-home.md,empty-home,SYNTHETIC-CONTROL,,Add app,,true,,,,true,,,,,omitted
+DEMO-0001,DEMO-0001_empty-home.md,empty-home,SYNTHETIC-CONTROL,,Permission check,,true,,,,true,,,,,omitted
+DEMO-0002,DEMO-0002_app-picker.md,app-picker,SYNTHETIC-CONTROL,,Sample Notes,,true,,,,true,,,,,omitted
+DEMO-0002,DEMO-0002_app-picker.md,app-picker,SYNTHETIC-CONTROL,,Create,,true,,,,true,,,,,omitted
+DEMO-0003,DEMO-0003_instance-created.md,instance-created,SYNTHETIC-CONTROL,,Launch,,true,,,,true,,,,,omitted
+DEMO-0003,DEMO-0003_instance-created.md,instance-created,SYNTHETIC-CONTROL,,More actions,,true,,,,true,,,,,omitted
+DEMO-0004,DEMO-0004_instance-menu.md,instance-menu,SYNTHETIC-CONTROL,,Start,,true,,,,true,,,,,omitted
+DEMO-0004,DEMO-0004_instance-menu.md,instance-menu,SYNTHETIC-CONTROL,,Stop,,true,,,,true,,,,,omitted
+DEMO-0004,DEMO-0004_instance-menu.md,instance-menu,SYNTHETIC-CONTROL,,Rename,,true,,,,true,,,,,omitted
+DEMO-0004,DEMO-0004_instance-menu.md,instance-menu,SYNTHETIC-CONTROL,,Backup,,true,,,,true,,,,,omitted
+DEMO-0004,DEMO-0004_instance-menu.md,instance-menu,SYNTHETIC-CONTROL,,Delete,,true,,,,true,,,,,omitted
+DEMO-0004,DEMO-0004_instance-menu.md,instance-menu,SYNTHETIC-CONTROL,,Cancel,,true,,,,true,,,,,omitted
+DEMO-0005,DEMO-0005_permission-diagnostics.md,permission-diagnostics,SYNTHETIC-CONTROL,,Open notification settings,,true,,,,true,,,,,omitted
+DEMO-0005,DEMO-0005_permission-diagnostics.md,permission-diagnostics,SYNTHETIC-CONTROL,,Open location settings,,true,,,,true,,,,,omitted

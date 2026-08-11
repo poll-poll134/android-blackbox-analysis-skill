@@ -10,6 +10,16 @@ A Codex Skill for **black-box competitive analysis of Android apps**. It uses AD
 
 This repository was first made public in August 2026, but it was not created as a temporary proof of concept solely for the Codex for Open Source application process. It grew out of a personal toolchain that I have used over the long term for black-box analysis of Android apps. Inspired by the Codex for Open Source program, I generalized the original tools, removed private information, clarified operational boundaries, and added release validation. I am publishing it under the MIT License so that other maintainers working on Android, cloud devices, and agent tooling can reuse it and contribute.
 
+## Used in Practice
+
+The private predecessor of this repository has been used over the long term for authorized black-box analysis of Android apps, including systematic screen, feature, and runtime-boundary reviews of two app-cloning products. Real work used remote ADB containerized Android environments and encountered JPEG screenshot output, incomplete UI hierarchies, unavailable cameras, interrupted networks followed by resumed capture, payment boundaries, and user-assisted login or permission steps. The resulting evidence supported capability matrices, product-difference comparisons, and feature selection for a new product.
+
+These statements describe real use of the method and its private predecessor. They do not claim third-party adoption of this public repository, user counts, download counts, or success rates that cannot be verified publicly.
+
+## Complete Sanitized Example
+
+[`examples/sanitized-complete-example/`](examples/sanitized-complete-example/README.en.md) demonstrates the complete cross-reference chain among scope input, capture plan, text evidence summaries, four evidence indexes, coverage gaps, capability matrix, system-interface boundaries, and final report. All example data is synthetic and represents no real app, device, or user; real screenshots and UI XML are not included in the public repository.
+
 ## Problems It Solves
 
 - **Screens and features are easy to miss**: Assign stable evidence IDs to screens, states, dialogs, long pages, and return paths.
@@ -65,7 +75,7 @@ The Skill generates and copies report templates; it **does not automatically fil
 | Environment | Support notes |
 |---|---|
 | macOS | Runs directly; verified with the local smoke test |
-| Linux | Expected to run directly; ImageMagick is recommended for JPEG conversion; no Linux distribution matrix has been tested yet |
+| Linux | Core smoke, structure, and redaction checks pass on GitHub Actions Ubuntu 24.04.4; real Android-device capture has not been tested across a Linux distribution matrix; ImageMagick is recommended for JPEG conversion |
 | Windows | WSL2 is recommended, with `adb`, Bash, Node.js, and Python installed inside WSL; direct execution of `.sh` files in PowerShell or CMD is not supported |
 | USB-connected physical device | Supported; USB debugging must be enabled and RSA authorization completed |
 | Android emulator | Supported; use the actual serial reported by `adb devices -l` |
@@ -214,6 +224,12 @@ A capability is considered a complete analysis loop only when the entry point, k
 ```bash
 ./scripts/smoke_test.sh
 node ./scripts/validate_skill.mjs .
+node ./scripts/redact_check.mjs .
+```
+
+To scan a specific case directory and an additional internal code name, run separately:
+
+```bash
 node ./scripts/redact_check.mjs ./cases/sample-app --deny internal-code-name
 ```
 
@@ -236,9 +252,16 @@ The default `.gitignore` excludes generated `cases/`. Do not commit APKs, screen
 
 ```text
 android-app-blackbox-competitive-analysis/
+├── .github/workflows/validate.yml
+├── CONTRIBUTING.md
+├── CONTRIBUTING.en.md
+├── SECURITY.md
+├── SECURITY.en.md
 ├── SKILL.md
 ├── README.md
 ├── README.en.md
+├── examples/
+│   └── sanitized-complete-example/
 ├── references/
 │   ├── analysis-guide.md
 │   └── evidence-model.md

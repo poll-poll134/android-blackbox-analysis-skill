@@ -1,0 +1,6 @@
+Evidence ID,Planned state,Allowed action,Expected evidence,Observed result
+DEMO-0001,Empty home,Open the app,Empty-state copy and add entry,Observed as planned
+DEMO-0002,App picker,Activate Add app,Installed-app list and create control,Observed as planned
+DEMO-0003,Created instance,Create one Sample Notes instance,Stable instance ID and ready state,Observed as planned
+DEMO-0004,Instance menu,Open the card menu,Start stop rename backup and delete controls,Observed as planned
+DEMO-0005,Permission diagnostics,Open diagnostics without changing settings,Permission states and unavailable camera boundary,Observed with incomplete UI tree

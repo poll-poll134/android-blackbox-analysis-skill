@@ -1,0 +1,11 @@
+Evidence ID,File,Gap type,Recommended handling
+DEMO-0001,DEMO-0001_empty-home.md,source-artifact-not-created,Use a real screenshot and UI XML in an authorized private case
+DEMO-0002,DEMO-0002_app-picker.md,source-artifact-not-created,Use a real screenshot and UI XML in an authorized private case
+DEMO-0003,DEMO-0003_instance-created.md,source-artifact-not-created,Use a real screenshot and UI XML in an authorized private case
+DEMO-0004,DEMO-0004_instance-menu.md,source-artifact-not-created,Use a real screenshot and UI XML in an authorized private case
+DEMO-0005,DEMO-0005_permission-diagnostics.md,source-artifact-not-created,Use a real screenshot and UI XML in an authorized private case
+DEMO-0005,DEMO-0005_permission-diagnostics.md,ui-tree-incomplete,Keep the visual state and mark control coverage as partial
+,input/scope.md,runtime-not-exercised,Collect package activity permission and AppOps evidence in a real authorized case
+,input/scope.md,login-not-tested,Record as an unavailable prerequisite; do not infer account behavior
+,input/scope.md,payment-out-of-scope,Stop before order creation or payment confirmation
+,input/scope.md,camera-unavailable,Record as an environment boundary rather than a product defect

@@ -1,0 +1,6 @@
+Capability ID,Capability family,Capability,Observed behavior,Evidence IDs,Status,Strength,Limitation,Comparison note,Priority
+CAP-001,Creation,Create first internal instance,The synthetic flow moves from app picker to a ready card with stable ID 0,DEMO-0002 | DEMO-0003,SYNTHETIC_EXAMPLE,Short first-create path,No real app or runtime was exercised,Ready for comparison by capability package,P0
+CAP-002,Lifecycle,Open instance action menu,The synthetic card menu exposes start stop rename backup delete and cancel,DEMO-0003 | DEMO-0004,SYNTHETIC_EXAMPLE,Core actions are grouped at card level,No action result beyond opening the menu is claimed,Compare menu coverage and destructive confirmations,P0
+CAP-003,Diagnostics,Show permission states,The synthetic diagnostics page distinguishes allowed denied and unavailable states,DEMO-0005,SYNTHETIC_EXAMPLE,Environment boundaries remain visible,One custom-rendered row lacks hierarchy coverage,Compare host truth and per-instance truth separately,P1
+CAP-004,Accounts,Real account workflow,No account was used,,NOT_TESTED,,Real account prerequisite unavailable,Do not infer login behavior,P2
+CAP-005,Commercialization,Payment completion,Payment was explicitly excluded,,OUT_OF_SCOPE,,No order or transaction exists,Compare only visible entry points in an authorized case,P2

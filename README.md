@@ -10,6 +10,16 @@
 
 本仓库于 2026 年 8 月首次公开，但并不是为申请活动临时创建的概念验证项目。它来源于我长期用于 Android 应用黑盒分析的个人工具链。受到 Codex for Open Source 项目鼓舞后，我对原有工具进行了通用化、隐私清理、边界补充和发布校验，并以 MIT 许可证公开，希望让其他 Android、云设备和 Agent 工具维护者复用和贡献。
 
+## Used in practice（实际应用）
+
+本仓库的私人前身曾长期用于授权的 Android 应用黑盒分析，包括对两款应用分身类产品进行系统性的界面、功能和运行边界扫描。真实工作中使用过远程 ADB 容器 Android，并处理过设备截图返回 JPEG、UI hierarchy 不完整、设备无相机、网络中断后续扫、付费边界，以及需要用户协助登录或授权等情况。形成的证据材料被用于能力矩阵、产品差异比较和新产品功能筛选。
+
+上述内容说明的是该方法和私人前身工具链的实际使用场景，不代表这个公开仓库已有第三方采用，也不声称用户数量、下载量或无法公开核验的成功率。
+
+## 完整脱敏示例
+
+[`examples/sanitized-complete-example/`](examples/sanitized-complete-example/README.md) 展示输入范围、采集计划、文本化证据摘要、四类证据索引、覆盖缺口、能力矩阵、系统接口边界和最终报告之间的完整引用链。示例数据完全合成，不对应真实应用、设备或用户；真实截图和 UI XML 未进入公开仓库。
+
 ## 它能解决什么问题
 
 - **页面和功能容易漏扫**：为页面、状态、弹窗、长页和返回路径建立稳定证据 ID。
@@ -65,7 +75,7 @@
 | 环境 | 支持说明 |
 |---|---|
 | macOS | 可直接运行；已通过本地 smoke test |
-| Linux | 预期可直接运行；JPEG 转换建议安装 ImageMagick；尚未提供发行版矩阵实测 |
+| Linux | 核心 smoke、结构和脱敏校验已在 GitHub Actions Ubuntu 24.04.4 通过；真实 Android 设备采集仍未做 Linux 发行版矩阵实测；JPEG 转换建议安装 ImageMagick |
 | Windows | 建议使用 WSL2 并在 WSL 内准备 `adb`、Bash、Node.js 和 Python；不支持直接在 PowerShell/CMD 中运行 `.sh` |
 | USB 真机 | 支持；需开启 USB 调试并完成 RSA 授权 |
 | Android 模拟器 | 支持；以 `adb devices -l` 返回的真实 serial 为准 |
@@ -214,6 +224,12 @@ node ./scripts/build_indexes.mjs --case-root ./cases/sample-app
 ```bash
 ./scripts/smoke_test.sh
 node ./scripts/validate_skill.mjs .
+node ./scripts/redact_check.mjs .
+```
+
+需要检查某个案例目录和额外内部代号时，可另行运行：
+
+```bash
 node ./scripts/redact_check.mjs ./cases/sample-app --deny internal-code-name
 ```
 
@@ -236,9 +252,16 @@ node ./scripts/redact_check.mjs ./cases/sample-app --deny internal-code-name
 
 ```text
 android-app-blackbox-competitive-analysis/
+├── .github/workflows/validate.yml
+├── CONTRIBUTING.md
+├── CONTRIBUTING.en.md
+├── SECURITY.md
+├── SECURITY.en.md
 ├── SKILL.md
 ├── README.md
 ├── README.en.md
+├── examples/
+│   └── sanitized-complete-example/
 ├── references/
 │   ├── analysis-guide.md
 │   └── evidence-model.md
