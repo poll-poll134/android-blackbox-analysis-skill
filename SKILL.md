@@ -40,7 +40,7 @@ node ./scripts/build_indexes.mjs --case-root ./cases/sample-app
 6. Classify statements as `[OBSERVED]`, `[COMPUTED]`, `[INFERRED]`, or `[NOT_TESTED]`.
 7. Separate product capability, visible interaction, Android runtime evidence, and unverified implementation assumptions.
 8. Complete the capability and system-interface templates, then write the report from evidence IDs.
-9. Run `smoke_test.sh`, `validate_skill.mjs`, and `redact_check.mjs` before publishing reusable material.
+9. Run `smoke_test.sh`, `validate_skill.mjs`, `validate_example.mjs`, and `redact_check.mjs` before publishing reusable material.
 
 ## Expected outputs
 

@@ -20,6 +20,7 @@ The project requires Bash 3.2+, Node.js 18+, and Python 3.9+. After cloning the 
 ```bash
 ./scripts/smoke_test.sh
 node ./scripts/validate_skill.mjs .
+node ./scripts/validate_example.mjs ./examples/sanitized-complete-example
 node ./scripts/redact_check.mjs .
 ```
 
@@ -45,4 +46,3 @@ A Pull Request should describe:
 - any related Issue.
 
 The maintainer may ask for a narrower scope, additional evidence, tests, or redaction. All merged contributions are released under this repository's [MIT License](LICENSE).
-

@@ -224,8 +224,11 @@ A capability is considered a complete analysis loop only when the entry point, k
 ```bash
 ./scripts/smoke_test.sh
 node ./scripts/validate_skill.mjs .
+node ./scripts/validate_example.mjs ./examples/sanitized-complete-example
 node ./scripts/redact_check.mjs .
 ```
+
+`validate_example.mjs` verifies the public example's required files, CSV schemas, and cross-references; recomputes SHA-256 hashes and byte counts for text evidence; and checks that evidence IDs, coverage gaps, capability and system-interface records, and both final reports form a consistent chain.
 
 To scan a specific case directory and an additional internal code name, run separately:
 
@@ -272,6 +275,7 @@ android-app-blackbox-competitive-analysis/
 │   ├── tap_ui.sh
 │   ├── build_indexes.mjs
 │   ├── redact_check.mjs
+│   ├── validate_example.mjs
 │   ├── validate_skill.mjs
 │   └── smoke_test.sh
 └── templates/

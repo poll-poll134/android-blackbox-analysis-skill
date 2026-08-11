@@ -43,3 +43,8 @@ reports/final-report.md
 shasum -a 256 examples/sanitized-complete-example/evidence/screen-summaries/*.md
 ```
 
+从仓库根目录校验整条示例引用链：
+
+```bash
+node ./scripts/validate_example.mjs ./examples/sanitized-complete-example
+```

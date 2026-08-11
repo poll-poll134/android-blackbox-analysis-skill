@@ -8,7 +8,7 @@ const required = [
   'references/evidence-model.md','references/analysis-guide.md',
   'templates/capability-matrix.csv','templates/system-interface-evidence.csv','templates/report-template.md',
   'scripts/init_case.sh','scripts/capture_evidence.sh','scripts/scroll_sweep.sh','scripts/ui_pick.py','scripts/tap_ui.sh',
-  'scripts/build_indexes.mjs','scripts/redact_check.mjs','scripts/validate_skill.mjs','scripts/smoke_test.sh',
+  'scripts/build_indexes.mjs','scripts/redact_check.mjs','scripts/validate_example.mjs','scripts/validate_skill.mjs','scripts/smoke_test.sh',
 ];
 const errors = [];
 for (const relative of required) if (!fs.existsSync(path.join(root, relative))) errors.push(`missing ${relative}`);

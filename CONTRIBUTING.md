@@ -20,6 +20,7 @@
 ```bash
 ./scripts/smoke_test.sh
 node ./scripts/validate_skill.mjs .
+node ./scripts/validate_example.mjs ./examples/sanitized-complete-example
 node ./scripts/redact_check.mjs .
 ```
 
@@ -45,4 +46,3 @@ Pull Request 请说明：
 - 相关 Issue（如有）。
 
 维护者可能要求缩小范围、补充证据、测试或脱敏。所有贡献在合并后按本仓库的 [MIT License](LICENSE) 发布。
-

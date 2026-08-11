@@ -43,3 +43,8 @@ Recompute the published-summary hashes with:
 shasum -a 256 examples/sanitized-complete-example/evidence/screen-summaries/*.md
 ```
 
+Validate the complete example reference chain from the repository root:
+
+```bash
+node ./scripts/validate_example.mjs ./examples/sanitized-complete-example
+```

@@ -224,8 +224,11 @@ node ./scripts/build_indexes.mjs --case-root ./cases/sample-app
 ```bash
 ./scripts/smoke_test.sh
 node ./scripts/validate_skill.mjs .
+node ./scripts/validate_example.mjs ./examples/sanitized-complete-example
 node ./scripts/redact_check.mjs .
 ```
+
+`validate_example.mjs` 会校验公开示例的必需文件、CSV 表头和引用关系，复算文本证据的 SHA-256 与字节数，并检查证据 ID、覆盖缺口、能力矩阵、系统接口证据和中英文最终报告是否保持闭环。
 
 需要检查某个案例目录和额外内部代号时，可另行运行：
 
@@ -272,6 +275,7 @@ android-app-blackbox-competitive-analysis/
 │   ├── tap_ui.sh
 │   ├── build_indexes.mjs
 │   ├── redact_check.mjs
+│   ├── validate_example.mjs
 │   ├── validate_skill.mjs
 │   └── smoke_test.sh
 └── templates/
