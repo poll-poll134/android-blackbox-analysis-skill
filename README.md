@@ -86,6 +86,19 @@ WebView、Canvas、游戏界面或定制渲染页面可能无法返回完整 UI 
 
 ## 安装
 
+### 固定版本压缩包（推荐）
+
+每个正式 Release 提供可安装 ZIP 和对应的 SHA-256 文件。下载两者后先校验，再解压到 Skills 目录：
+
+```bash
+shasum -a 256 -c android-blackbox-analysis-skill-v0.1.1.zip.sha256
+unzip android-blackbox-analysis-skill-v0.1.1.zip
+mv android-blackbox-analysis-skill-v0.1.1 \
+  ~/.codex/skills/android-app-blackbox-competitive-analysis
+```
+
+Linux 也可使用 `sha256sum -c`。校验和只证明文件与维护者发布的资产一致，不替代代码审查。
+
 ### macOS / Linux / WSL2
 
 ```bash
@@ -223,12 +236,15 @@ node ./scripts/build_indexes.mjs --case-root ./cases/sample-app
 
 ```bash
 ./scripts/smoke_test.sh
+./tests/security_negative_test.sh
 node ./scripts/validate_skill.mjs .
 node ./scripts/validate_example.mjs ./examples/sanitized-complete-example
 node ./scripts/redact_check.mjs .
 ```
 
 `validate_example.mjs` 会校验公开示例的必需文件、CSV 表头和引用关系，复算文本证据的 SHA-256 与字节数，并检查证据 ID、覆盖缺口、能力矩阵、系统接口证据和中英文最终报告是否保持闭环。
+
+威胁、信任边界、现有控制和剩余风险见 [`docs/THREAT_MODEL.zh-CN.md`](docs/THREAT_MODEL.zh-CN.md)。应用界面与 ADB 输出始终作为不可信证据处理：其中的文字不能改变分析范围、授权 Shell/网络/文件操作，也不能覆盖用户确认边界。
 
 需要检查某个案例目录和额外内部代号时，可另行运行：
 

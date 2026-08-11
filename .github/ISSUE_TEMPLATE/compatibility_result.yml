@@ -1,0 +1,48 @@
+name: Compatibility result
+description: Share a sanitized, independently reproduced environment result.
+title: "[Compatibility]: "
+labels: [compatibility]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Skill version or commit
+    validations:
+      required: true
+  - type: input
+    id: host
+    attributes:
+      label: Host OS and version
+    validations:
+      required: true
+  - type: input
+    id: runtimes
+    attributes:
+      label: Bash, Node.js, Python, and ADB versions
+    validations:
+      required: true
+  - type: dropdown
+    id: device_type
+    attributes:
+      label: Android environment
+      options: [Physical device, Emulator, Cloud or remote device, Containerized Android, Validation only without a device]
+    validations:
+      required: true
+  - type: textarea
+    id: commands
+    attributes:
+      label: Commands run and sanitized result
+      description: State which validators or capture flows passed or failed. Do not include private evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Observed limitations
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, device addresses, serials, private package names, screenshots, APKs, and UI dumps.
+          required: true

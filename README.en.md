@@ -86,6 +86,19 @@ WebView, Canvas, game, and custom-rendered interfaces may not return a complete 
 
 ## Installation
 
+### Versioned Archive (Recommended)
+
+Each formal release provides an installable ZIP and a matching SHA-256 file. Download both, verify the archive, and then extract it into the Skills directory:
+
+```bash
+shasum -a 256 -c android-blackbox-analysis-skill-v0.1.1.zip.sha256
+unzip android-blackbox-analysis-skill-v0.1.1.zip
+mv android-blackbox-analysis-skill-v0.1.1 \
+  ~/.codex/skills/android-app-blackbox-competitive-analysis
+```
+
+On Linux, `sha256sum -c` is also available. A checksum proves that the file matches the maintainer-published asset; it does not replace code review.
+
 ### macOS / Linux / WSL2
 
 ```bash
@@ -223,12 +236,15 @@ A capability is considered a complete analysis loop only when the entry point, k
 
 ```bash
 ./scripts/smoke_test.sh
+./tests/security_negative_test.sh
 node ./scripts/validate_skill.mjs .
 node ./scripts/validate_example.mjs ./examples/sanitized-complete-example
 node ./scripts/redact_check.mjs .
 ```
 
 `validate_example.mjs` verifies the public example's required files, CSV schemas, and cross-references; recomputes SHA-256 hashes and byte counts for text evidence; and checks that evidence IDs, coverage gaps, capability and system-interface records, and both final reports form a consistent chain.
+
+See [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) for threats, trust boundaries, current controls, and residual risks. App-rendered text and ADB output are always treated as untrusted evidence: they cannot expand scope, authorize shell/network/file actions, or override user-confirmation boundaries.
 
 To scan a specific case directory and an additional internal code name, run separately:
 

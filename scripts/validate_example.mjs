@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const exampleRoot = path.resolve(process.argv[2] ?? path.join(repositoryRoot, 'examples/sanitized-complete-example'));
 const errors = [];
+const maximumPublishedFileBytes = 5 * 1024 * 1024;
+const realExampleRoot = fs.realpathSync(exampleRoot);
 
 const schemas = new Map([
   ['input/capture-plan.csv', ['Evidence ID', 'Planned state', 'Allowed action', 'Expected evidence', 'Observed result']],
@@ -73,11 +75,8 @@ function parseCsv(text, relative) {
 }
 
 function readTable(relative) {
-  const absolute = path.join(exampleRoot, relative);
-  if (!fs.existsSync(absolute)) {
-    fail(`missing ${relative}`);
-    return [];
-  }
+  const absolute = resolvePublishedPath(relative, relative);
+  if (!absolute) return [];
   const records = parseCsv(fs.readFileSync(absolute, 'utf8'), relative);
   const expectedHeader = schemas.get(relative);
   if (records.length === 0) {
@@ -109,6 +108,20 @@ function resolvePublishedPath(relative, context) {
     fail(`${context}: referenced file does not exist: ${relative}`);
     return null;
   }
+  if (fs.lstatSync(absolute).isSymbolicLink()) {
+    fail(`${context}: referenced file must not be a symlink: ${relative}`);
+    return null;
+  }
+  const real = fs.realpathSync(absolute);
+  const realPrefix = `${realExampleRoot}${path.sep}`;
+  if (!real.startsWith(realPrefix)) {
+    fail(`${context}: referenced file resolves outside the example root: ${relative}`);
+    return null;
+  }
+  if (fs.statSync(real).size > maximumPublishedFileBytes) {
+    fail(`${context}: referenced file exceeds 5 MiB limit: ${relative}`);
+    return null;
+  }
   return absolute;
 }
 
@@ -127,6 +140,7 @@ function requireUnique(rows, column, relative, { allowBlank = false } = {}) {
 for (const relative of requiredMarkdown) {
   const absolute = path.join(exampleRoot, relative);
   if (!fs.existsSync(absolute) || !fs.statSync(absolute).isFile() || fs.statSync(absolute).size === 0) fail(`missing or empty ${relative}`);
+  else resolvePublishedPath(relative, relative);
 }
 
 const tables = Object.fromEntries([...schemas.keys()].map((relative) => [relative, readTable(relative)]));

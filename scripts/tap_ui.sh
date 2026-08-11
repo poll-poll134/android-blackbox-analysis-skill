@@ -21,6 +21,11 @@ if [[ -z "${serial}" || -z "${selector}" ]]; then
   exit 2
 fi
 
+if [[ ! "${wait_seconds}" =~ ^[0-9]{1,2}$ || "${wait_seconds}" -gt 60 ]]; then
+  printf 'wait must be an integer from 0 to 60 seconds\n' >&2
+  exit 2
+fi
+
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 temporary_ui="$(mktemp "${TMPDIR:-/tmp}/android-blackbox-ui.XXXXXX.xml")"
 trap 'rm -f "${temporary_ui}"' EXIT

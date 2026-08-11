@@ -8,6 +8,8 @@ Only the latest version on the default branch is supported. Security updates are
 
 Reportable issues include unsafe script execution, unintended collection or disclosure of sensitive information, dangerous default behavior, validation bypasses, and other flaws in this project that could affect a user's device or analysis materials.
 
+The project's assets, trust boundaries, attack surface, current controls, and residual risks are documented in [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md).
+
 Vulnerabilities in third-party Android apps are outside this repository's scope and should be reported to the corresponding app maintainer. Do not upload APKs, screenshots, UI XML, device identifiers, account data, or other unsanitized materials with a report.
 
 ## Reporting a Vulnerability Privately
@@ -34,4 +36,3 @@ The maintainer will aim to acknowledge a report within seven days and coordinate
 - Do not submit third-party credentials, personal information, or internal company materials through the reporting process.
 - Do not perform payments, account deletion, destructive data operations, risk-control bypasses, or actions that affect other users to demonstrate an issue.
 - Allow reasonable time for remediation and user upgrades before public disclosure.
-

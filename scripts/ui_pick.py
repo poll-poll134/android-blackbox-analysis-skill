@@ -12,7 +12,12 @@ def clean(value):
 def main():
     if len(sys.argv) != 3:
         raise SystemExit("usage: ui_pick.py <ui_dump.xml> <exact-text-desc-or-resource-id>")
-    xml_text = Path(sys.argv[1]).read_text(encoding="utf-8", errors="replace")
+    xml_path = Path(sys.argv[1])
+    if xml_path.is_symlink():
+        raise SystemExit("refusing symlinked UI dump")
+    if xml_path.stat().st_size > 10 * 1024 * 1024:
+        raise SystemExit("UI dump exceeds 10 MiB safety limit")
+    xml_text = xml_path.read_text(encoding="utf-8", errors="replace")
     marker = "</hierarchy>"
     start = xml_text.find("<hierarchy")
     end = xml_text.rfind(marker)

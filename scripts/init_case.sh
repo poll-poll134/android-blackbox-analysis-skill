@@ -7,6 +7,10 @@ if [[ $# -ne 1 ]]; then
 fi
 
 case_root="$1"
+if [[ "${case_root}" == '/' || "${case_root}" == '.' || "${case_root}" == '..' || -L "${case_root}" ]]; then
+  printf 'refusing unsafe or symlinked case root: %s\n' "${case_root}" >&2
+  exit 2
+fi
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 skill_root="$(cd "${script_dir}/.." && pwd)"
 

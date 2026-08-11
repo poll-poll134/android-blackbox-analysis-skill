@@ -1,6 +1,50 @@
 name: Validate
-'on': {push: {branches: [main]}, pull_request: {}, workflow_dispatch: {}}
-permissions: {contents: read}
-concurrency: {group: "validate-${{ github.workflow }}-${{ github.ref }}", cancel-in-progress: true}
-jobs: {validate: {name: "Smoke, structure, example, and redaction", runs-on: ubuntu-latest, timeout-minutes: 10, steps: [{name: "Check out repository", uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262}, {name: "Run smoke test", run: "./scripts/smoke_test.sh"}, {name: "Validate skill package", run: "node ./scripts/validate_skill.mjs ."}, {name: "Validate sanitized example", run: "node ./scripts/validate_example.mjs ./examples/sanitized-complete-example"}, {name: "Scan repository for sensitive text", run: "node ./scripts/redact_check.mjs ."}]}}
 
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Smoke, security, example, redaction, and package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "20"
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+      - name: Run smoke test
+        run: ./scripts/smoke_test.sh
+      - name: Run negative security tests
+        run: ./tests/security_negative_test.sh
+      - name: Validate skill package
+        run: node ./scripts/validate_skill.mjs .
+      - name: Validate sanitized example
+        run: node ./scripts/validate_example.mjs ./examples/sanitized-complete-example
+      - name: Scan repository for sensitive text
+        run: node ./scripts/redact_check.mjs .
+      - name: Build deterministic release package
+        run: python3 ./scripts/package_release.py
+      - name: Validate unpacked release package
+        run: |
+          mkdir -p /tmp/android-blackbox-release
+          unzip -q ./dist/android-blackbox-analysis-skill-v$(cat VERSION).zip -d /tmp/android-blackbox-release
+          package_root="/tmp/android-blackbox-release/android-blackbox-analysis-skill-v$(cat VERSION)"
+          node "${package_root}/scripts/validate_skill.mjs" "${package_root}"
+          "${package_root}/scripts/smoke_test.sh"

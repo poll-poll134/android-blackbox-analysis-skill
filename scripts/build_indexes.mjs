@@ -14,7 +14,10 @@ function parseArgs(argv) {
 }
 
 function csv(value) {
-  const text = String(value ?? '');
+  let text = String(value ?? '');
+  // Quoting does not stop spreadsheet applications from evaluating formulas.
+  // Preserve the visible evidence while forcing formula-like cells to text.
+  if (/^[=+\-@\t\r]/.test(text)) text = `'${text}`;
   return `"${text.replaceAll('"', '""')}"`;
 }
 

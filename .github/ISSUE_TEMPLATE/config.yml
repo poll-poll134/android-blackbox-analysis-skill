@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Private security report
+    url: https://github.com/poll-poll134/android-blackbox-analysis-skill/security/advisories/new
+    about: Report vulnerabilities privately. Do not disclose sensitive details in a public issue.

@@ -35,6 +35,29 @@ if [[ -z "${serial}" || -z "${case_root}" ]]; then
   exit 2
 fi
 
+if [[ ! "${prefix}" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ || ! "${slug}" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
+  printf 'prefix and slug may contain only letters, numbers, dot, underscore, and hyphen\n' >&2
+  exit 2
+fi
+if [[ ! "${start}" =~ ^[0-9]{1,6}$ || ! "${count}" =~ ^[0-9]{1,3}$ || "${count}" -lt 1 || "${count}" -gt 100 ]]; then
+  printf 'start must be 0..999999 and count must be 1..100\n' >&2
+  exit 2
+fi
+for coordinate in "${x1}" "${y1}" "${x2}" "${y2}"; do
+  if [[ ! "${coordinate}" =~ ^[0-9]{1,6}$ ]]; then
+    printf 'swipe coordinates must be non-negative integers up to six digits\n' >&2
+    exit 2
+  fi
+done
+if [[ ! "${duration}" =~ ^[0-9]{1,5}$ || "${duration}" -lt 1 || "${duration}" -gt 60000 ]]; then
+  printf 'swipe duration must be 1..60000 milliseconds\n' >&2
+  exit 2
+fi
+if [[ ! "${wait_seconds}" =~ ^[0-9]{1,2}$ || "${wait_seconds}" -gt 60 ]]; then
+  printf 'wait must be an integer from 0 to 60 seconds\n' >&2
+  exit 2
+fi
+
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 for ((index=0; index<count; index++)); do
   number=$((start + index))

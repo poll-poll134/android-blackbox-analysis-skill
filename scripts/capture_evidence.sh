@@ -30,6 +30,19 @@ if [[ ! "${evidence_id}" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ || ! "${slug}" =~ ^[A-Z
   exit 2
 fi
 
+if [[ -n "${package_name}" && ! "${package_name}" =~ ^[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z][A-Za-z0-9_]*)+$ ]]; then
+  printf 'package must be a fully qualified Android package name\n' >&2
+  exit 2
+fi
+if [[ -n "${expected_size}" && ! "${expected_size}" =~ ^[1-9][0-9]{0,4}x[1-9][0-9]{0,4}$ ]]; then
+  printf 'expected size must be WIDTHxHEIGHT with positive dimensions up to five digits\n' >&2
+  exit 2
+fi
+if [[ "${case_root}" == '/' || "${case_root}" == '.' || "${case_root}" == '..' || -L "${case_root}" ]]; then
+  printf 'refusing unsafe or symlinked case root: %s\n' "${case_root}" >&2
+  exit 2
+fi
+
 if [[ "$(adb -s "${serial}" get-state 2>/dev/null || true)" != 'device' ]]; then
   printf 'ADB target is not ready: %s\n' "${serial}" >&2
   exit 3
