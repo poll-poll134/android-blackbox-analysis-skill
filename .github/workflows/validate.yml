@@ -1,0 +1,5 @@
+name: Validate
+'on': {push: {branches: [main]}, pull_request: {}, workflow_dispatch: {}}
+permissions: {contents: read}
+concurrency: {group: "validate-${{ github.workflow }}-${{ github.ref }}", cancel-in-progress: true}
+jobs: {validate: {name: "Smoke, structure, and redaction", runs-on: ubuntu-latest, timeout-minutes: 10, steps: [{name: "Check out repository", uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262}, {name: "Run smoke test", run: "./scripts/smoke_test.sh"}, {name: "Validate skill package", run: "node ./scripts/validate_skill.mjs ."}, {name: "Scan repository for sensitive text", run: "node ./scripts/redact_check.mjs ."}]}}
