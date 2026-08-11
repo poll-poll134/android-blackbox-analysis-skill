@@ -1,5 +1,7 @@
 # Android App Black-Box Analysis Skill
 
+[简体中文](README.md) | [English](README.en.md)
+
 一个用于 **Android 应用黑盒竞品分析** 的 Codex Skill。它通过 ADB 截图、UI 层级、系统运行时信息和结构化索引，把“人工逛 App”变成一套可追溯、可核验、可用于横向对比的证据材料。
 
 > 核心原则：只根据可见行为和 Android 系统证据下结论，不反编译 APK，不把推测写成事实。
@@ -7,10 +9,6 @@
 ## 项目背景与开源说明
 
 本仓库于 2026 年 8 月首次公开，但并不是为申请活动临时创建的概念验证项目。它来源于我长期用于 Android 应用黑盒分析的个人工具链。受到 Codex for Open Source 项目鼓舞后，我对原有工具进行了通用化、隐私清理、边界补充和发布校验，并以 MIT 许可证公开，希望让其他 Android、云设备和 Agent 工具维护者复用和贡献。
-
-### English
-
-This repository was first made public in August 2026, but it was not created as a temporary proof of concept solely for the Codex for Open Source application process. It grew out of a personal toolchain that I have used over the long term for black-box analysis of Android apps. Inspired by the Codex for Open Source program, I generalized the original tools, removed private information, clarified operational boundaries, and added release validation. I am publishing it under the MIT License so that other maintainers working on Android, cloud devices, and agent tooling can reuse it and contribute.
 
 ## 它能解决什么问题
 
@@ -240,6 +238,7 @@ node ./scripts/redact_check.mjs ./cases/sample-app --deny internal-code-name
 android-app-blackbox-competitive-analysis/
 ├── SKILL.md
 ├── README.md
+├── README.en.md
 ├── references/
 │   ├── analysis-guide.md
 │   └── evidence-model.md
